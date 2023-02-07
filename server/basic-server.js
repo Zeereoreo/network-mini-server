@@ -2,23 +2,22 @@ const http = require('http');
 const PORT = 4999;
 const ip = 'localhost';
 const cors = require('cors');
-const router = express.Router()
 const express = require('express')
 const app = express()
 
 app.use(cors());
 app.use(express.json({strict : false}))
 
+app.get('/',(req,res)=>{
+  res.send('Hello World!')
+})
+
 app.post('/upper', function (req,res){
-  let result = req.body;
-  result = result.toUpperCase();
-  res.json(result)
+  res.json(req.body.toUpperCase());
 })
 
 app.post('/lower', function (req,res){
-  let result = req.body;
-  result = result.toLowerCase();
-  res.json(result)
+  res.json(req.body.toLowerCase());
 })
 
 app.use(function(req,res,next){
